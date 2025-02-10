@@ -1,1 +1,106 @@
-test 2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        #result {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Simple Test Page</h2>
+        
+        <form id="testForm">
+            <div class="question">
+                <p>1. What is the capital of New Zealand?</p>
+                <input type="radio" name="q1" value="A"> Auckland<br>
+                <input type="radio" name="q1" value="B"> Wellington<br>
+                <input type="radio" name="q1" value="C"> Christchurch<br>
+            </div>
+
+            <div class="question">
+                <p>2. What is 5 + 3?</p>
+                <input type="radio" name="q2" value="A"> 6<br>
+                <input type="radio" name="q2" value="B"> 8<br>
+                <input type="radio" name="q2" value="C"> 10<br>
+            </div>
+
+            <div class="question">
+                <p>3. What is the largest planet in our solar system?</p>
+                <input type="radio" name="q3" value="A"> Mars<br>
+                <input type="radio" name="q3" value="B"> Earth<br>
+                <input type="radio" name="q3" value="C"> Jupiter<br>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="checkAnswers()">Submit</button>
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+
+            let answers = {
+                q1: "B", // Wellington
+                q2: "B", // 8
+                q3: "C"  // Jupiter
+            };
+
+            let form = document.getElementById("testForm");
+
+            for (let key in answers) {
+                let selected = form.querySelector(`input[name="${key}"]:checked`);
+                if (selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            document.getElementById("result").innerText = "Your score: " + score + " / 3";
+        }
+    </script>
+
+</body>
+</html>
